@@ -1,0 +1,25 @@
+{
+  "name": "d3-parliament",
+  "description": "A parliament chart based on d3",
+  "main": "d3-parliament.js",
+  "authors": [
+    "Geoffrey Brossard <me@geoffreybrossard.fr>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "d3",
+    "parliament"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "example",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "4.1.1"
+  }
+}

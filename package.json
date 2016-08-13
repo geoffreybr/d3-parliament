@@ -1,0 +1,26 @@
+{
+  "name": "d3-parliament",
+  "version": "1.0.0",
+  "description": "A parliament chart based on d3",
+  "main": "d3-parliament.js",
+  "dependencies": {
+    "uglify-js": "^2.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geoffreybr/d3-parliament"
+  },
+  "keywords": [
+    "d3",
+    "parliament"
+  ],
+  "author": "Geoffrey Brossard <me@geoffreybrossard.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geoffreybr/d3-parliament/issues"
+  }
+}
