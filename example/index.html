@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <script src="https://d3js.org/d3.v4.min.js"></script>
-        <script src="../d3-parliament.min.js" charset="utf-8"></script>
+        <script src="../d3-parliament.js" charset="utf-8"></script>
 
         <style media="screen">
             html, body {
@@ -44,7 +44,7 @@
     <body>
         <svg></svg>
         <script type="text/javascript">
-            var parliament = d3.parliament().width(800).height(800).innerRadiusCoef(0.4);
+            var parliament = d3.parliament().width(200).height(500).innerRadiusCoef(0.4);
             parliament.enter.fromCenter(true).smallToBig(true);
             parliament.exit.toCenter(true).bigToSmall(true);
             parliament.on("click", function(e) { console.log(e); });
