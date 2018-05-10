@@ -44,7 +44,7 @@
     <body>
         <svg></svg>
         <script type="text/javascript">
-            var parliament = d3.parliament().width(200).height(500).innerRadiusCoef(0.4);
+            var parliament = d3.parliament().width(200).innerRadiusCoef(0.4);
             parliament.enter.fromCenter(true).smallToBig(true);
             parliament.exit.toCenter(true).bigToSmall(true);
             parliament.on("click", function(e) { console.log(e); });

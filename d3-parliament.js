@@ -29,7 +29,7 @@ d3.parliament = function() {
 
             // if user did not provide, fill the svg:
             width = width ? width : this.getBoundingClientRect().width;
-            height = height ? height : this.getBoundingClientRect().height
+            height = width ? width / 2 : this.getBoundingClientRect().width/2;
 
             var outerParliamentRadius = Math.min(width/2, height);
             var innerParliementRadius = outerParliamentRadius * innerRadiusCoef;
