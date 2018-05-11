@@ -14,6 +14,9 @@ d3.parliament = function() {
             "smallToBig": true,
             "fromCenter": true
         },
+        update = {
+          'animate': true,
+        },
         exit = {
             "bigToSmall": true,
             "toCenter": true
@@ -171,8 +174,12 @@ d3.parliament = function() {
             }
 
             /* animation updating seats in the parliament */
-            circles.transition().duration(function() { return 1000 + Math.random()*800; })
-                .attr("cx", seatX)
+            if (update.animate) {
+              var circlesUpdate = circles.transition().duration(function() { return 1000 + Math.random()*800; });
+            } else {
+              var circlesUpdate = circles;
+            }
+              circlesUpdate.attr("cx", seatX)
                 .attr("cy", seatY)
                 .attr("r", seatRadius);
 
@@ -222,6 +229,14 @@ d3.parliament = function() {
             return parliament.enter;
         }
     };
+
+    parliament.update = {
+      animate: function(value) {
+        if (!arguments.length) return update.animate;
+        update.animate = value;
+        return parliament.update;
+      }
+    }
 
     parliament.exit = {
         bigToSmall: function (value) {
