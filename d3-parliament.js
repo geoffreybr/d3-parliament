@@ -7,7 +7,8 @@ d3.parliament = function() {
     /* params */
     var width,
         height,
-        innerRadiusCoef = 0.4;
+        innerRadiusCoef = 0.4,
+        scale = d3.scaleOrdinal(d3.schemeCategory10);
 
     /* animations */
     var enter = {
@@ -39,8 +40,6 @@ d3.parliament = function() {
 
             /* init the svg */
             var svg = d3.select(this);
-            // svg.attr('width', width);
-            // svg.attr('height', height);
 
             /***
              * compute number of seats and rows of the parliament */
@@ -95,8 +94,8 @@ d3.parliament = function() {
             });
 
             /* fill the seat objects with data of its party and of itself if existing */
+            var partyIndex = 0;
             (function() {
-                var partyIndex = 0;
                 var seatIndex = 0;
                 seats.forEach(function(s) {
                     /* get current party and go to the next one if it has all its seats filled */
@@ -116,7 +115,8 @@ d3.parliament = function() {
                 });
             })();
 
-
+            // fixed scale domain, scaleIndex can be used to see if there are > 10 parties.
+            scale.domain(d.map(function(row) { return(row.legend) }));
             /***
              * helpers to get value from seat data */
             var seatClasses = function(d) {
@@ -133,7 +133,7 @@ d3.parliament = function() {
                 }
                 return r;
             };
-
+            var seatColor = function(d) { return scale(d.party.legend); }
 
             /***
              * fill svg with seats as circles */
@@ -155,6 +155,8 @@ d3.parliament = function() {
             circlesEnter.attr("cx", enter.fromCenter ? 0 : seatX);
             circlesEnter.attr("cy", enter.fromCenter ? 0 : seatY);
             circlesEnter.attr("r", enter.smallToBig ? 0 : seatRadius);
+            circlesEnter.attr("fill", seatColor);
+
             if (enter.fromCenter || enter.smallToBig) {
                 var t = circlesEnter.transition().duration(function() { return 1000 + Math.random()*800; });
                 if (enter.fromCenter) {
@@ -216,6 +218,12 @@ d3.parliament = function() {
         innerRadiusCoef = value;
         return parliament;
     };
+
+    parliament.scale = function(value) {
+      if (!arguments.length) return scale;
+      scale = value;
+      return parliament;
+    }
 
     parliament.enter = {
         smallToBig: function (value) {
