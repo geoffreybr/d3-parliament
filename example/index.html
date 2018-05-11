@@ -5,6 +5,7 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-scale.v2.min.js"></script>
         <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js'></script>
 
         <script src="../d3-parliament.js" charset="utf-8"></script>
 
@@ -26,18 +27,31 @@
     <body>
         <svg width="600" height="300"></svg>
         <script type="text/javascript">
-            var parliament = d3.parliament().innerRadiusCoef(0.4);
+            var parliament = d3.parliament().width(400).innerRadiusCoef(0.4);
             parliament.enter.fromCenter(true).smallToBig(true);
             parliament.exit.toCenter(true).bigToSmall(true);
             parliament.on("click", function(e) { console.log(e); });
 
             var setData = function(d) {
-                d3.select("svg").datum(d).call(parliament);
+              let svg = d3.select("svg");
+              svg.datum(d).call(parliament);
+
+              svg.append("g")
+                .attr("class", "legendSymbol")
+                .attr("transform", "translate(440, 20)");
+
+              var legendPath = d3.legendColor()
+                .scale(parliament.scale())
+                .orient("vertical")
+
+              svg.select(".legendSymbol")
+                .call(legendPath);
             };
+
 
             d3.json("european.json", setData);
 
-            setTimeout(function() { d3.json("french.json", setData); }, 5000)
+            // setTimeout(function() { d3.json("french.json", setData); }, 5000)
         </script>
     </body>
 </html>

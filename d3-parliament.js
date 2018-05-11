@@ -8,7 +8,7 @@ d3.parliament = function() {
     var width,
         height,
         innerRadiusCoef = 0.4,
-        scaleRange = d3.schemeCategory10;
+        scale = d3.scaleOrdinal(d3.schemeCategory10);
 
     /* animations */
     var enter = {
@@ -112,9 +112,8 @@ d3.parliament = function() {
                 });
             })();
 
-            // fixed scale, scaleIndex can be used to see if there are > 10 parties.
-            var scale = d3.scaleOrdinal(scaleRange)
-              .domain(d.map(function(row) { return(row.id) }));
+            // fixed scale domain, scaleIndex can be used to see if there are > 10 parties.
+            scale.domain(d.map(function(row) { return(row.legend) }));
             /***
              * helpers to get value from seat data */
             var seatClasses = function(d) {
@@ -131,7 +130,7 @@ d3.parliament = function() {
                 }
                 return r;
             };
-            var seatColor = function(d) { return scale(d.party.id); }
+            var seatColor = function(d) { return scale(d.party.legend); }
 
             /***
              * fill svg with seats as circles */
@@ -213,9 +212,9 @@ d3.parliament = function() {
         return parliament;
     };
 
-    parliament.scaleRange = function(value) {
-      if (!arguments.length) return scaleRange;
-      scaleRange = value;
+    parliament.scale = function(value) {
+      if (!arguments.length) return scale;
+      scale = value;
       return parliament;
     }
 
