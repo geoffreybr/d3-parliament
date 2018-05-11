@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8">
         <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/d3-scale.v2.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
         <script src="../d3-parliament.js" charset="utf-8"></script>
 
         <style media="screen">
@@ -18,33 +21,12 @@
                 transition: all 800ms;
             }
 
-            /* European parliament colors */
-            svg .seat.gue-ngl { fill: #990000 }
-            svg .seat.sd { fill: #F0001C }
-            svg .seat.greens-efa { fill: #32CD32 }
-            svg .seat.alde { fill: #FFD700 }
-            svg .seat.epp { fill: #3399FF }
-            svg .seat.ecr { fill: #0054A5 }
-            svg .seat.efdd { fill: #40E0D0 }
-            svg .seat.enf { fill: #000000 }
-
-            /* French parliament colors */
-            svg .seat.com { fill: #990000; }
-            svg .seat.soc { fill: #D58490; }
-            svg .seat.eelv { fill: #32CD32; }
-            svg .seat.edsr { fill: #BF80FF; }
-            svg .seat.uc { fill: #B2C6FF; }
-            svg .seat.lr { fill: #4C6099; }
-
-            /* common */
-            svg .seat.vacant { fill: #FFFFFF }
-            svg .seat.no-party { fill: #909090; }
         </style>
     </head>
     <body>
-        <svg></svg>
+        <svg width="600" height="300"></svg>
         <script type="text/javascript">
-            var parliament = d3.parliament().width(200).innerRadiusCoef(0.4);
+            var parliament = d3.parliament().innerRadiusCoef(0.4);
             parliament.enter.fromCenter(true).smallToBig(true);
             parliament.exit.toCenter(true).bigToSmall(true);
             parliament.on("click", function(e) { console.log(e); });
