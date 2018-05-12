@@ -117,6 +117,7 @@ d3.parliament = function() {
 
             // fixed scale domain, scaleIndex can be used to see if there are > 10 parties.
             scale.domain(d.map(function(row) { return(row.legend) }));
+            
             /***
              * helpers to get value from seat data */
             var seatClasses = function(d) {
@@ -183,7 +184,8 @@ d3.parliament = function() {
             }
               circlesUpdate.attr("cx", seatX)
                 .attr("cy", seatY)
-                .attr("r", seatRadius);
+                .attr("r", seatRadius)
+                .attr("fill", seatColor);;
 
             /* animation removing seats from the parliament */
             if (exit.toCenter || exit.bigToSmall) {
