@@ -1,0 +1,12 @@
+svg {
+  position: relative;
+  left: 25%;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+span.quote {
+  font-style: italic;
+}
