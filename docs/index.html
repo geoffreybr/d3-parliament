@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>d3-parliament</title>
+
+    <!-- Stylesheet -->
+    <link rel='stylesheet' href='assets/css/reset.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'>
+    <link rel='stylesheet' href='assets/css/index.css'>
+
+
+    <!-- d3 dependencies -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js'></script>
+    <script src="assets/js/d3-parliament.js"></script>
+
+    <!--  Syntax highlighting -->
+    <link rel='stylesheet' href='assets/css/atom-one-dark.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <body>
+      <section class="section">
+        <div class="container">
+          <div class="column">
+            <h1 class="title">
+              d3-parliament
+            </h1>
+            <p class="subtitle">
+              A d3 add-on to create parliament plots seamlessly.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+
+          <h4 class='title is-4'>Parliament plots</h4>
+            <div class="columns">
+              <div class="column">
+                <div class='box'>
+                  <svg width="50%" height="0"></svg>
+                </div>
+              </div>
+              <div class="column is-one-thirds">
+                <div class="content">
+                  <ul>
+                    <li><span class='quote'>"Representations of the composition of legislatures that display seats color-coded by parties."</span> as described by Thomas J. Leeper.</li>
+                    <li>It is <a href="https://en.wikipedia.org/wiki/European_Parliament_election,_1994#Results">often</a> <a href="https://en.wikipedia.org/wiki/26th_Parliament_of_Turkey">used</a> in Wikipedia.</li>
+                    <li>Also available: <a href="https://github.com/leeper/ggparliament">ggparliament (R package)</a>, <a href="https://github.com/juliuste/parliament-svg">an virtual DOM implementation</a> and a <a href="https://github.com/slashme/parliamentdiagram">parliament plot creator for Wikipedia</a>.
+                    </ul>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="columns is-multiline">
+            <div class="column is-half-desktop">
+              <h4 class="title is-6">How to use d3-parliament?</h1>
+              <figure>
+                <pre><code class="js">  var parliament = d3.parliament();
+  d3.json("data/european.json", function(d) {
+    let svg = d3.select("svg");
+    svg.datum(d)
+    .call(parliament);
+  });</code></pre>
+                </figure>
+                <p class='is-size-7'>(Check out <a href='data/european.json'>european.json</a>)</p>
+              </div>
+              <!-- <div class="column is-half-desktop">
+                <p><a href='data/european.json'>The data</a> look like this:</p>
+                <figure>
+                  <pre><code class="js">  [{
+    "id": "gue-ngl",
+    "legend": "GUE-NGL",
+    "name": "European United Left–Nordic Green Left",
+    "seats": 52
+  }, ...]</code></pre>
+                </figure>
+              </div> -->
+            <div class="column is-half-desktop">
+              <h5 class="title is-6">Use your own color palettes <span class="tag is-primary">New!</span></h5>
+              <figure>
+                <pre><code class="js">  var parliament = d3.parliament();
+  var rainbowScale = ['red', 'blue'];
+  parliament.scale(rainbowScale);
+  // or use the d3 defaults!
+  // parliament.scale(d3.schemeCategory10);
+
+</code></pre>
+              </figure>
+            </div>
+            <div class="column is-half-desktop">
+              <h5 class="title is-6">Easily use <a href="http://d3-legend.susielu.com/">d3-legends</a> <span class="tag is-primary">New!</span></h5>
+              <figure>
+                <pre><code class="js">var legendPath = d3.legendColor()
+  .scale(parliament.scale());</code></pre>
+              </figure>
+            </div>
+          <!-- </div> -->
+          <!-- <div class="columns"> -->
+            <div class="column is-half-desktop">
+              <h5 class="title is-6">Respect for DOM elements! <span class="tag is-primary">New!</span></h5>
+              <p>This version of d3-parliament easily integrates to your R2D3 workflow.</p>
+              <p>This is because d3-parliament now respects the DOM elements, unless it owns them. Attributes set by you or other libraries you use are safe.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="column">
+            <p><strong>d3-parliament</strong>. Originally developed by <a href="https://nangka.fr/">Geoffrey Brossard</a>.</p>
+            <p>Version 1.0.1 presented on this page is a developed by <a href="https://www.oguzhanogreden.com">Oğuzhan Öğreden</a>.</p>
+            <p>The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <script type="text/javascript">
+        hljs.initHighlightingOnLoad();
+        var parliament = d3.parliament()
+        parliament.enter.fromCenter(false).smallToBig(false);
+        parliament.update.animate(false);
+        parliament.exit.toCenter(false).bigToSmall(false);
+
+
+        var setData = function(d) {
+          let svg = d3.select("svg");
+          svg.datum(d).call(parliament);
+
+          // svg.append("g")
+          //   .attr("class", "legendSymbol")
+          //   .attr("transform", "translate(440, 20)");
+          //
+          // var legendPath = d3.legendColor()
+          //   .scale(parliament.scale())
+          //   .orient("vertical")
+          //
+          // svg.select(".legendSymbol")
+          //   .call(legendPath);
+        };
+
+
+        d3.json("data/european.json", setData);
+        window.onload = function() {
+          let svg = document.getElementsByTagName('svg')[0];
+          svg.setAttribute('height', svg.getBoundingClientRect().width/2);
+        }
+      </script>
+    </body>
+  </body>
+</html>
