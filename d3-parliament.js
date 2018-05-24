@@ -196,9 +196,9 @@ d3.parliament = function() {
         return parliament;
     };
 
+    /** Deprecated since v1.0.1 */
     parliament.height = function(value) {
         if (!arguments.length) return height;
-        height = value;
         return parliament;
     };
 
