@@ -5,8 +5,8 @@
 
 d3.parliament = function() {
     /* params */
-    var width = 500,
-        height = 500,
+    var width,
+        height,
         innerRadiusCoef = 0.4;
 
     /* animations */
@@ -29,14 +29,17 @@ d3.parliament = function() {
 
     function parliament(data) {
         data.each(function(d) {
+
+            // if user did not provide, fill the svg:
+            width = width ? width : this.getBoundingClientRect().width;
+            height = width ? width / 2 : this.getBoundingClientRect().width/2;
+
             var outerParliamentRadius = Math.min(width/2, height);
             var innerParliementRadius = outerParliamentRadius * innerRadiusCoef;
 
             /* init the svg */
             var svg = d3.select(this);
-            svg.classed("d3-parliament", true);
-            svg.attr("width", width);
-            svg.attr("height", height);
+
             /***
              * compute number of seats and rows of the parliament */
             var nSeats = 0;
@@ -200,9 +203,9 @@ d3.parliament = function() {
         return parliament;
     };
 
+    /** Deprecated since v1.0.1 */
     parliament.height = function(value) {
         if (!arguments.length) return height;
-        height = value;
         return parliament;
     };
 
