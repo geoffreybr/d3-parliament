@@ -1,6 +1,6 @@
 {
   "name": "d3-parliament",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A parliament chart based on d3",
   "main": "d3-parliament.js",
   "dependencies": {
