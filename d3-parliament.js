@@ -36,8 +36,6 @@ d3.parliament = function() {
 
             /* init the svg */
             var svg = d3.select(this);
-            // svg.attr('width', width);
-            // svg.attr('height', height);
 
             /***
              * compute number of seats and rows of the parliament */
