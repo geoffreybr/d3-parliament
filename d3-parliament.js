@@ -8,7 +8,7 @@ d3.parliament = function() {
     var width,
         height,
         innerRadiusCoef = 0.4,
-        scale = d3.scaleOrdinal(d3.schemeCategory10);
+        scale;
 
     /* animations */
     var enter = {
@@ -40,9 +40,10 @@ d3.parliament = function() {
 
             /* init the svg */
             var svg = d3.select(this);
+            // svg.attr('width', width);
+            // svg.attr('height', height);
 
-            /***
-             * compute number of seats and rows of the parliament */
+            /* compute number of seats and rows of the parliament */
             var nSeats = 0;
             d.forEach(function(p) { nSeats += (typeof p.seats === 'number') ? Math.floor(p.seats) : p.seats.length; });
 
@@ -115,9 +116,6 @@ d3.parliament = function() {
                 });
             })();
 
-            // fixed scale domain, scaleIndex can be used to see if there are > 10 parties.
-            scale.domain(d.map(function(row) { return(row.legend) }));
-            
             /***
              * helpers to get value from seat data */
             var seatClasses = function(d) {
@@ -134,10 +132,15 @@ d3.parliament = function() {
                 }
                 return r;
             };
-            var seatColor = function(d) { return scale(d.party.legend); }
 
-            /***
-             * fill svg with seats as circles */
+            // if scale is present, use it:
+            if (!scale) {
+              scale.domain(d.map(function(row) { return(row.legend) }));
+              var seatColor = function(d) { return scale(d.party.legend); }
+            }
+
+
+            /* fill svg with seats as circles */
             /* container of the parliament */
             var container = svg.select(".parliament");
             if (container.empty()) {
