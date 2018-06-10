@@ -40,8 +40,6 @@ d3.parliament = function() {
 
             /* init the svg */
             var svg = d3.select(this);
-            // svg.attr('width', width);
-            // svg.attr('height', height);
 
             /* compute number of seats and rows of the parliament */
             var nSeats = 0;
@@ -95,8 +93,8 @@ d3.parliament = function() {
             });
 
             /* fill the seat objects with data of its party and of itself if existing */
-            var partyIndex = 0;
             (function() {
+                var partyIndex = 0;
                 var seatIndex = 0;
                 seats.forEach(function(s) {
                     /* get current party and go to the next one if it has all its seats filled */
@@ -159,7 +157,10 @@ d3.parliament = function() {
             circlesEnter.attr("cx", enter.fromCenter ? 0 : seatX);
             circlesEnter.attr("cy", enter.fromCenter ? 0 : seatY);
             circlesEnter.attr("r", enter.smallToBig ? 0 : seatRadius);
-            circlesEnter.attr("fill", seatColor);
+
+            if (!scale) {
+              circlesEnter.attr("fill", seatColor);
+            }
 
             if (enter.fromCenter || enter.smallToBig) {
                 var t = circlesEnter.transition().duration(function() { return 1000 + Math.random()*800; });
@@ -187,8 +188,11 @@ d3.parliament = function() {
             }
               circlesUpdate.attr("cx", seatX)
                 .attr("cy", seatY)
-                .attr("r", seatRadius)
-                .attr("fill", seatColor);;
+                .attr("r", seatRadius);
+
+              if (!scale) {
+                circlesUpdate.attr("fill", seatColor);
+              }
 
             /* animation removing seats from the parliament */
             if (exit.toCenter || exit.bigToSmall) {
