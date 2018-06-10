@@ -132,7 +132,7 @@ d3.parliament = function() {
             };
 
             // if scale is present, use it:
-            if (!scale) {
+            if (scale) {
               scale.domain(d.map(function(row) { return(row.legend) }));
               var seatColor = function(d) { return scale(d.party.legend); }
             }
@@ -158,7 +158,7 @@ d3.parliament = function() {
             circlesEnter.attr("cy", enter.fromCenter ? 0 : seatY);
             circlesEnter.attr("r", enter.smallToBig ? 0 : seatRadius);
 
-            if (!scale) {
+            if (scale) {
               circlesEnter.attr("fill", seatColor);
             }
 
@@ -190,7 +190,7 @@ d3.parliament = function() {
                 .attr("cy", seatY)
                 .attr("r", seatRadius);
 
-              if (!scale) {
+              if (scale) {
                 circlesUpdate.attr("fill", seatColor);
               }
 
