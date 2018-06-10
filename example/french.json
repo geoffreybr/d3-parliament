@@ -1,0 +1,44 @@
+[
+    {
+        "id": "com",
+        "legend": "Communist Group",
+        "name": "Communist Group",
+        "seats": 20
+    },
+    {
+        "id": "soc",
+        "legend": "Socialist Group",
+        "name": "Socialist Group",
+        "seats": 128
+    },
+    {
+        "id": "eelv",
+        "legend": "Europe Écologie–The Greens",
+        "name": "Europe Écologie–The Greens",
+        "seats": 12
+    },
+    {
+        "id": "edsr",
+        "legend": "European Democratic and Social Rally",
+        "name": "European Democratic and Social Rally",
+        "seats": 18
+    },
+    {
+        "id": "uc",
+        "legend": "UC",
+        "name": "Union of Democrats and Independents",
+        "seats": 32
+    },
+    {
+        "id": "lr",
+        "legend": "Republican Group",
+        "name": "Republican Group",
+        "seats": 131
+    },
+    {
+        "id": "no-party",
+        "legend": "Non-Inscrits",
+        "name": "Non-Inscrits",
+        "seats": 7
+    }
+]

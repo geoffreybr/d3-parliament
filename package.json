@@ -14,15 +14,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oguzhanogreden/d3-parliament"
+    "url": "https://github.com/geoffreybr/d3-parliament"
   },
   "keywords": [
     "d3",
     "parliament"
   ],
   "author": "Geoffrey Brossard <me@geoffreybrossard.fr>",
+  "contributors": "Oğuzhan Öğreden <oguzhan@oguzhanogreden.com> http://www.oguzhanogreden.com/",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oguzhanogreden/d3-parliament/issues"
+    "url": "https://github.com/geoffreybr/d3-parliament/issues"
   }
 }
